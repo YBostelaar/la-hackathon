@@ -1,27 +1,13 @@
 import React from 'react';
 
-import { talk } from 'services/speach';
-import { addConvo } from 'services/conversation';
-
 import Step1 from './components/Step1';
 import Step2 from './components/Step2';
 import Step3 from './components/Step3';
+import Step4 from './components/Step4';
 
 class Entry extends React.Component {
   state = {
     step: 1,
-  }
-
-  componentDidMount() {
-    talk('Goodmorning Jay. Welcome to your Greenwheels for today. How is you car looking?', () => {
-      addConvo(':feedback', (feedback) => {
-        if (feedback === 'good') {
-          talk('That"s great! Let"s start your ride!');
-        } else {
-          talk(`${feedback}? That does not sound good. Let's fix that!`);
-        }
-      });
-    });
   }
 
   changeStep = (increment) => {
@@ -31,13 +17,15 @@ class Entry extends React.Component {
   render() {
     switch (this.state.step) {
       case 1:
-        return <Step1 />;
+        return <Step1 changeStep={this.changeStep} />;
       case 2:
-        return <Step2 />;
+        return <Step2 changeStep={this.changeStep} />;
       case 3:
-        return <Step3 />;
+        return <Step3 changeStep={this.changeStep} />;
+      case 4:
+        return <Step4 changeStep={this.changeStep} />;
       default:
-        return <Step1 />;
+        return <Step1 changeStep={this.changeStep} />;
     }
   }
 }
