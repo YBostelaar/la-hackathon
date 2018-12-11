@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
+import Video from 'common/Video';
+
 import Entry from 'modules/Entry';
 import Driving from 'modules/Driving';
 import Locking from 'modules/Locking';
@@ -43,6 +45,7 @@ const Dashboard = () => (
           <Route path="/photo" component={Photo} exact />
         </Switch>
       </State>
+      <Video />
     </Content>
   </Container>
 );

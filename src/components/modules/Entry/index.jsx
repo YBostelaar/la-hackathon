@@ -4,7 +4,6 @@ import ButtonContainer from 'common/ButtonContainer';
 import Button from 'common/Button';
 import Title from 'common/Title';
 import Subtitle from 'common/Subtitle';
-import Voice from 'common/Voice';
 
 const Entry = () => (
   <>
@@ -14,7 +13,6 @@ const Entry = () => (
       <Button>LOOKS GOOD</Button>
       <Button>LOOKS JAAA</Button>
     </ButtonContainer>
-    <Voice />
   </>
 );
 
