@@ -1,4 +1,5 @@
 import React from 'react';
+import apiUrl from 'config/api';
 import { CameraContainer, Video, InvisibleCanvas, OutputImage } from './styled';
 
 class Camera extends React.Component {
@@ -24,7 +25,7 @@ class Camera extends React.Component {
       const form = new FormData();
       form.append('image', this.state.src.replace('data:image/png;base64,', ''));
 
-      fetch('http://10.10.6.5:8000/compare', {
+      fetch(`${apiUrl}/compare`, {
         method: 'POST',
         body: form,
       });
