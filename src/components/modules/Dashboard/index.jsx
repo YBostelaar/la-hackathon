@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 
 import Video from 'common/Video';
 
@@ -38,14 +38,6 @@ const State = styled.div`
 `;
 
 class Dashboard extends React.Component {
-  componentDidMount() {
-    document.addEventListener('keypress', (e) => {
-      if (e.keyCode === 32) {
-        this.props.history.push('/driving');
-      }
-    });
-  }
-
   render() {
     return (
       <Container>
@@ -67,4 +59,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+export default withRouter(Dashboard);

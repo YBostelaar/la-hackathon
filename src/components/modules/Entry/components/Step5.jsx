@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 
 import Title from 'common/Title';
 
@@ -7,7 +8,15 @@ const Icon = styled.span`
   font-size: 60px;
 `;
 
-class Step1 extends React.Component {
+class Step5 extends React.Component {
+  componentDidMount() {
+    document.addEventListener('keypress', (e) => {
+      if (e.keyCode === 32) {
+        this.props.history.push('/parking');
+      }
+    });
+  }
+
   render() {
     return (
       <>
@@ -18,4 +27,4 @@ class Step1 extends React.Component {
   }
 }
 
-export default Step1;
+export default withRouter(Step5);
