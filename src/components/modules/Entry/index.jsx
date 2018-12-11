@@ -15,7 +15,11 @@ class Entry extends React.Component {
   componentDidMount() {
     talk('Goodmorning Jay. Welcome to your Greenwheels for today. How is you car looking?', () => {
       addConvo(':feedback', (feedback) => {
-        talk(`${feedback}? That does not sound good. Let's fix that ASAP!`);
+        if (feedback === 'good') {
+          talk('That"s great! Let"s start your ride!');
+        } else {
+          talk(`${feedback}? That does not sound good. Let's fix that!`);
+        }
       });
     });
   }

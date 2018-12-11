@@ -4,8 +4,8 @@ export const talk = (msg, callback) => {
   const message = new SpeechSynthesisUtterance();
   message.voice = window.speechSynthesis.getVoices().find((voice) => voice.name === 'Daniel');
   message.text = msg;
-  message.rate = 10;
-  message.pitch = 2;
+  message.rate = 1;
+  message.pitch = 0.5;
 
   window.messages = [];
   window.messages.push(message);
