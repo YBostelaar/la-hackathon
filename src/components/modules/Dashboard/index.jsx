@@ -7,7 +7,6 @@ import Driving from 'modules/Driving';
 import Locking from 'modules/Locking';
 import Parking from 'modules/Parking';
 
-import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 
 const Container = styled.div`
@@ -32,7 +31,6 @@ const State = styled.div`
 
 const Dashboard = () => (
   <Container>
-    <Sidebar />
     <Content>
       <Header />
       <State>
