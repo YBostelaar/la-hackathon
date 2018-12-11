@@ -5,3 +5,12 @@ export const initConvo = () => {
     annyang.start();
   };
 };
+
+export const addConvo = (trigger, callback) => {
+  annyang.addCommands({
+    [trigger]: (...params) => {
+      callback(...params);
+      annyang.removeCommands(trigger);
+    },
+  });
+};

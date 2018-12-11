@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { talk } from 'services/speach';
+import { addConvo } from 'services/conversation';
 
 import ButtonContainer from 'common/ButtonContainer';
 import Button from 'common/Button';
@@ -13,7 +14,9 @@ import VideoUrl from 'video/voice.mp4';
 class Entry extends React.PureComponent {
   componentDidMount() {
     talk('Goodmorning Jay. Welcome to your Greenwheels for today. How is you car looking?', () => {
-      console.log('msg ended');
+      addConvo(':feedback', (feedback) => {
+        talk(`${feedback}? That does not sound good. Let's fix that ASAP!`);
+      });
     });
   }
 
