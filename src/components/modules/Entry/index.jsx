@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { talk } from 'services/speach';
+
 import ButtonContainer from 'common/ButtonContainer';
 import Button from 'common/Button';
 import Title from 'common/Title';
@@ -9,6 +11,12 @@ import Video from 'common/Video';
 import VideoUrl from 'video/voice.mp4';
 
 class Entry extends React.PureComponent {
+  componentDidMount() {
+    talk('Goodmorning Jay. Welcome to your Greenwheels for today. How is you car looking?', () => {
+      console.log('msg ended');
+    });
+  }
+
   playVideo = () => {
     this.refs.vidRef.play();
   }
