@@ -7,7 +7,6 @@ import ButtonContainer from 'common/ButtonContainer';
 import Button from 'common/Button';
 import Title from 'common/Title';
 import Subtitle from 'common/Subtitle';
-import Video from 'common/Video';
 
 import VideoUrl from 'video/voice.mp4';
 

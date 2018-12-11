@@ -1,11 +1,23 @@
-import styled from 'styled-components';
+import React from 'react';
 
-const Video = styled.video`
-  align-self: center;
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  margin-left: -300px;
-`;
+import VideoUrl from 'video/voice.mp4';
+import StyledVideo from './styled';
+
+class Video extends React.PureComponent {
+  playVideo = () => {
+    this.refs.vidRef.play();
+  };
+
+  render() {
+    return (
+      <>
+        <StyledVideo ref="vidRef">
+          <source src={VideoUrl} type="video/mp4" />
+          Sorry, your browser doesn't support embedded videos.
+        </StyledVideo>
+      </>
+    );
+  }
+};
 
 export default Video;

@@ -2,10 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
+import Video from 'common/Video';
+
 import Entry from 'modules/Entry';
 import Driving from 'modules/Driving';
 import Locking from 'modules/Locking';
 import Parking from 'modules/Parking';
+import Photo from 'modules/Photo';
 
 import Header from './components/Header';
 
@@ -39,8 +42,10 @@ const Dashboard = () => (
           <Route path="/driving" component={Driving} exact />
           <Route path="/parking" component={Parking} exact />
           <Route path="/locking" component={Locking} exact />
+          <Route path="/photo" component={Photo} exact />
         </Switch>
       </State>
+      <Video />
     </Content>
   </Container>
 );
