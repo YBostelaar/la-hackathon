@@ -1,4 +1,5 @@
 import React from 'react';
+import { CameraContainer, Video, InvisibleCanvas, OutputImage } from './styled';
 
 class Camera extends React.Component {
   videoRef = React.createRef();
@@ -68,11 +69,11 @@ class Camera extends React.Component {
 
   render() {
     return (
-      <div onClick={this.takePicture} style={{ height: '100vh', width: '100vw', cursor: 'pointer' }}>
-        <video ref={this.videoRef} style={{ display: 'none' }} />
-        <canvas ref={this.canvasRef} style={{ display: 'none' }} />
-        {this.state.src && <img ref={this.photoRef} alt="output" style={{ display: 'block' }} />}
-      </div>
+      <CameraContainer onClick={this.takePicture}>
+        <Video ref={this.videoRef} />
+        <InvisibleCanvas ref={this.canvasRef} />
+        {this.state.src && <OutputImage ref={this.photoRef} alt="output" />}
+      </CameraContainer>
     );
   }
 }
