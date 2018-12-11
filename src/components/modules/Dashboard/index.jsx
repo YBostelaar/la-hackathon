@@ -31,24 +31,41 @@ const State = styled.div`
   flex-direction: column;
   align-items: center;
   margin: auto 0;
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
 `;
 
-const Dashboard = () => (
-  <Container>
-    <Content>
-      <Header />
-      <State>
-        <Switch>
-          <Route path="/" component={Entry} exact />
-          <Route path="/driving" component={Driving} exact />
-          <Route path="/parking" component={Parking} exact />
-          <Route path="/locking" component={Locking} exact />
-          <Route path="/photo" component={Photo} exact />
-        </Switch>
-      </State>
-      <Video />
-    </Content>
-  </Container>
-);
+class Dashboard extends React.Component {
+  componentDidMount() {
+    document.addEventListener('keypress', (e) => {
+      if (e.keyCode === 32) {
+        this.props.history.push('/driving');
+      }
+    });
+  }
+
+  render() {
+    return (
+      <Container>
+        <Content>
+          <Header />
+          <State>
+            <Switch>
+              <Route path="/" component={Entry} exact />
+              <Route path="/driving" component={Driving} exact />
+              <Route path="/parking" component={Parking} exact />
+              <Route path="/locking" component={Locking} exact />
+              <Route path="/photo" component={Photo} exact />
+            </Switch>
+          </State>
+          <Video />
+        </Content>
+      </Container>
+    );
+  }
+}
 
 export default withRouter(Dashboard);
