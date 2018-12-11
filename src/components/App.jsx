@@ -4,12 +4,14 @@ import GlobalStyle from 'styles';
 
 import Dashboard from 'modules/Dashboard';
 import Camera from 'modules/Camera';
+import Locking from 'modules/Locking';
 
 const App = () => (
   <main>
     <GlobalStyle />
     <Switch>
       <Route exact path="/camera" component={Camera} />
+      <Route path="/locking" component={Locking} />
       <Route path="/" component={Dashboard} />
     </Switch>
   </main>
