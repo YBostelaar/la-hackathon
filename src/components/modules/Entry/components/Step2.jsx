@@ -10,8 +10,8 @@ import Button from 'common/Button';
 class Step2 extends React.Component {
   componentDidMount() {
     talk('How does the car look today?', () => {
+      console.log('PRAAT');
       addConvo(':feedback', (feedback) => {
-        console.log(feedback);
         if (feedback === 'good') {
           talk('That"s great! Let"s start your ride!', () => {
             this.props.changeStep(5);

@@ -17,6 +17,7 @@ const Image = styled.img`
 class Step3 extends React.Component {
   componentDidMount() {
     talk('Does the car look like in the picture?', () => {
+      console.log('PRAAT');
       addConvo(':feedback', (feedback) => {
         if (feedback === 'yes') {
           talk('That"s great! Let"s start your ride!', () => {
