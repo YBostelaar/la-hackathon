@@ -31,8 +31,15 @@ class Video extends React.PureComponent {
 
   render() {
     return (
-      <StyledVideo autoPlay={true} webkit-playsinline="true" playsInline={true} muted="muted" loop={true} ref="vidRef">
-        <source src={VideoUrl} type="video/mp4" />
+      <StyledVideo
+        ref="vidRef"
+        autoPlay={this.props.autoplay}
+        playsInline={true}
+        fullscreen={this.props.fullscreen}
+        muted="muted"
+        loop={true}
+      >
+        <source src={this.props.src ? this.props.src : VideoUrl} type="video/mp4" />
         Sorry, your browser doesn't support embedded videos.
       </StyledVideo>
     );
@@ -40,10 +47,16 @@ class Video extends React.PureComponent {
 };
 
 Video.propTypes = {
+  src: PT.string,
   playing: PT.bool,
+  autoplay: PT.oneOf([false, 'autoplay']),
+  fullscreen: PT.bool,
 };
 
 Video.defaultProps = {
+  src: '',
+  autoplay: false,
+  fullscreen: false,
   playing: false,
 };
 

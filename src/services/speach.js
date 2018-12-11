@@ -1,26 +1,37 @@
 import store from 'app/store';
 import { setVoice } from 'ducks/voice';
 
-export const talk = (msg, callback) => {
+export const talk = (msg, callback, seconds = 5000) => {
   store.dispatch(setVoice(true));
-  window.speechSynthesis.cancel();
+  console.log(1, msg);
+  const synth = window.speechSynthesis;
 
-  const message = new SpeechSynthesisUtterance();
-  message.voice = window.speechSynthesis.getVoices().find((voice) => voice.name === 'Daniel');
-  message.text = msg;
-  message.rate = 10;
-  message.pitch = 2;
+  if (synth.speaking) {
+    console.error('speechSynthesis.speaking');
+    return;
+  }
 
-  window.messages = [];
-  window.messages.push(message);
+  if (msg !== '') {
+    var utterThis = new SpeechSynthesisUtterance(msg);
 
-  const endCallback = () => {
-    if (callback) callback();
-    store.dispatch(setVoice(false));
-    message.removeEventListener('end', endCallback);
-  };
+    if (callback) {
+      const timeoutFunc = () => callback();
 
-  message.addEventListener('end', endCallback);
+      setTimeout(() => {
+        store.dispatch(setVoice(false));
+        timeoutFunc();
+        clearTimeout(timeoutFunc);
+      }, seconds);
+    }
 
-  window.speechSynthesis.speak(message);
+    utterThis.onerror = function (event) {
+      console.error('SpeechSynthesisUtterance.onerror', event);
+    };
+
+    utterThis.voice = window.speechSynthesis.getVoices().find((voice) => voice.name === 'Daniel');
+    utterThis.pitch = 0.5;
+    utterThis.rate = 1;
+
+    synth.speak(utterThis);
+  }
 };

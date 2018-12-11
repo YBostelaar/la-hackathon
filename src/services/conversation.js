@@ -1,6 +1,7 @@
 import annyang from 'annyang';
 
 export const initConvo = () => {
+  window.speechSynthesis.cancel();
   window.speechSynthesis.onvoiceschanged = () => {
     annyang.start();
   };
