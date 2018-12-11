@@ -7,7 +7,7 @@ export const CameraContainer = styled.section`
 `;
 
 export const Video = styled.video`
-  display: none;
+  opacity: 0;
 `;
 
 export const InvisibleCanvas = styled.canvas`

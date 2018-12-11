@@ -9,18 +9,12 @@ class Camera extends React.Component {
   height = 480;
 
   state = {
+    allow: false,
     src: '',
   };
 
   componentDidMount() {
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then((stream) => {
-        this.video.srcObject = stream;
-        this.video.onloadedmetadata = () => {
-          this.video.play();
-        };
-      })
-      .catch((err) => console.error(err));
+    this.init();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -45,6 +39,14 @@ class Camera extends React.Component {
     return this.canvas.getContext('2d');
   }
 
+  init = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      this.video.srcObject = stream;
+      this.setState({ allow: true });
+    } catch (err) { console.error(err); };
+  }
+
   clearphoto = () => {
     this.canvasContext.fillStyle = '#AAA';
     this.canvasContext.fillRect(0, 0, this.canvas.width, this.canvas.height);
@@ -54,6 +56,8 @@ class Camera extends React.Component {
   }
 
   takePicture = () => {
+    if (!this.state.allow) return this.init();
+
     this.clearphoto();
 
     const context = this.canvas.getContext('2d');
@@ -69,8 +73,8 @@ class Camera extends React.Component {
 
   render() {
     return (
-      <CameraContainer onClick={this.takePicture}>
-        <Video ref={this.videoRef} />
+      <CameraContainer onTouch={this.takePicture} onClick={this.takePicture}>
+        <Video ref={this.videoRef} autoPlay playsInline />
         <InvisibleCanvas ref={this.canvasRef} />
         {this.state.src && <OutputImage ref={this.photoRef} alt="output" />}
       </CameraContainer>
