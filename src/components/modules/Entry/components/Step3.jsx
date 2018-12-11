@@ -15,6 +15,7 @@ const Image = styled.img`
 `;
 
 const Container = styled.div`
+  position: absolute !important;
   z-index: 2;
   bottom: 130px;
 `;
