@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 import Video from 'common/Video';
 
@@ -50,4 +51,4 @@ const Dashboard = () => (
   </Container>
 );
 
-export default Dashboard;
+export default withRouter(Dashboard);

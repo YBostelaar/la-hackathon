@@ -1,27 +1,72 @@
 import React from 'react';
-import 'aframe';
-import { Entity, Scene } from 'aframe-react';
-import styled from 'styled-components';
 
-import CarView from 'images/carview.jpg';
+import CarView from 'video/car.mp4';
 import Title from 'common/Title';
+import Video from 'common/Video';
 
-const StyledScene = styled(Scene)`
-  position: absolute;
-  z-index: 0;
-  width: 100vw;
-  height: 100vw;
-  top: 0;
-  left: 0;
-`;
+class Photo extends React.Component {
+  constructor(props) {
+    super(props);
 
-const Photo = () => (
-  <>
-    <Title>Photo</Title>
-    <StyledScene>
-      <Entity primitive="a-sky" rotation="0 -130 0" src={CarView} />
-    </StyledScene>
-  </>
-);
+    this.state = {
+      rotation: -95,
+      zas: -100,
+      endTime: 0,
+      startTime: 0,
+    };
+
+    this.slideIntervalTime = 40000;
+  }
+
+  componentDidMount() {
+    this.resetTimes();
+    this.createTimeout();
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this.animation);
+  }
+
+  resetTimes = () => {
+    const startTime = new Date().getTime();
+
+    this.setState({
+      rotation: -95,
+      zas: -100,
+      endTime: startTime + this.slideIntervalTime,
+      startTime,
+    });
+  }
+
+  createTimeout = () => {
+    const now = new Date().getTime();
+
+    if (now >= this.state.endTime) {
+      this.resetTimes();
+    } else {
+      const rotation = ((now - this.state.startTime) / this.slideIntervalTime) * 360;
+
+      let zas = -20;
+      if (rotation > 30 && rotation < 31) {
+        zas = 100;
+      } else if (rotation === 200) {
+        zas = 100;
+      }
+
+      this.setState({ rotation, zas });
+    }
+
+    this.animation = requestAnimationFrame(this.createTimeout);
+  }
+
+  render() {
+    return (
+      <>
+        <Title>Photo</Title>
+        <Video src={CarView} autoplay={true} />
+      </>
+    );
+  }
+}
 
 export default Photo;
