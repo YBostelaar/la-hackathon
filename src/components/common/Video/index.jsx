@@ -1,11 +1,12 @@
 import React from 'react';
 import PT from 'prop-types';
 
-import VideoUrl from 'video/voice.mp4';
+import VideoUrl from 'video/voice-short.mp4';
 import StyledVideo from './styled';
 
 class Video extends React.PureComponent {
   componentDidMount() {
+    document.querySelector('html').click();
     this.handleVideoState(this.props);
   }
 
@@ -25,11 +26,12 @@ class Video extends React.PureComponent {
 
   stopVideo = () => {
     this.refs.vidRef.pause();
+    this.refs.vidRef.currentTime = 0;
   }
 
   render() {
     return (
-      <StyledVideo ref="vidRef">
+      <StyledVideo autoPlay={true} webkit-playsinline="true" playsInline={true} muted="muted" loop={true} ref="vidRef">
         <source src={VideoUrl} type="video/mp4" />
         Sorry, your browser doesn't support embedded videos.
       </StyledVideo>
