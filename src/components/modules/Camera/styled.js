@@ -4,6 +4,8 @@ export const CameraContainer = styled.section`
   height: 100vh;
   width: 100vw;
   cursor: pointer;
+  position: relative;
+  z-index: 3;
 `;
 
 export const Video = styled.video`
@@ -15,5 +17,5 @@ export const InvisibleCanvas = styled.canvas`
 `;
 
 export const OutputImage = styled.img`
-  display: block;
+  display: none;
 `;

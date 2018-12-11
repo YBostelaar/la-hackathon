@@ -9,7 +9,7 @@ const App = () => (
   <main>
     <GlobalStyle />
     <Switch>
-      <Route path="/" component={Dashboard} />
+      <Route exact path="/" component={Dashboard} />
       <Route path="/camera" component={Camera} />
     </Switch>
   </main>
