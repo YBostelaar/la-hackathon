@@ -14,6 +14,12 @@ const Image = styled.img`
   height: 200px;
 `;
 
+const Container = styled.div`
+  position: absolute !important;
+  z-index: 2;
+  bottom: 130px;
+`;
+
 class Step3 extends React.Component {
   componentDidMount() {
     talk('Does the car look like in the picture?', () => {
@@ -33,19 +39,21 @@ class Step3 extends React.Component {
   render() {
     return (
       <>
-        <Subtitle>Does the car look like in the picture?</Subtitle>
-        <ButtonContainer>
-          <Button onClick={() => this.props.changeStep(4)}>No</Button>
-          <Button
-            onClick={() => {
-              talk('That"s great! Let"s start your ride!', () => {
-                this.props.changeStep(5);
-              });
-            }}
-          >
-            Yes
-          </Button>
-        </ButtonContainer>
+        <Container>
+          <Subtitle>Does the car look like in the picture?</Subtitle>
+          <ButtonContainer>
+            <Button onClick={() => this.props.changeStep(4)}>No</Button>
+            <Button
+              onClick={() => {
+                talk('That"s great! Let"s start your ride!', () => {
+                  this.props.changeStep(5);
+                });
+              }}
+            >
+              Yes
+            </Button>
+          </ButtonContainer>
+        </Container>
         {/* <Image src={apiUrl + '/latest/'} alt="image" /> */}
         <Video
           src={CarView}
