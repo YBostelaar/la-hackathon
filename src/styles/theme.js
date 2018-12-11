@@ -1,4 +1,5 @@
 export default {
-  prime: '#e7ff00',
-  black: '#000000',
+  black: '#171717',
+  white: '#FFFFFF',
+  green: '#33AB52',
 };
