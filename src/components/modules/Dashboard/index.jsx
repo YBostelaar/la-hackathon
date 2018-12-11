@@ -48,7 +48,6 @@ class Dashboard extends React.Component {
               <Route path="/" component={Entry} exact />
               <Route path="/driving" component={Driving} exact />
               <Route path="/parking" component={Parking} exact />
-              <Route path="/locking" component={Locking} exact />
               <Route path="/photo" component={Photo} exact />
             </Switch>
           </State>
