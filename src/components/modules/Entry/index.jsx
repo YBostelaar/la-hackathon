@@ -3,14 +3,15 @@ import React from 'react';
 import { talk } from 'services/speach';
 import { addConvo } from 'services/conversation';
 
-import ButtonContainer from 'common/ButtonContainer';
-import Button from 'common/Button';
-import Title from 'common/Title';
-import Subtitle from 'common/Subtitle';
+import Step1 from './components/Step1';
+import Step2 from './components/Step2';
+import Step3 from './components/Step3';
 
-import VideoUrl from 'video/voice.mp4';
+class Entry extends React.Component {
+  state = {
+    step: 1,
+  }
 
-class Entry extends React.PureComponent {
   componentDidMount() {
     talk('Goodmorning Jay. Welcome to your Greenwheels for today. How is you car looking?', () => {
       addConvo(':feedback', (feedback) => {
@@ -19,27 +20,22 @@ class Entry extends React.PureComponent {
     });
   }
 
-  playVideo = () => {
-    this.refs.vidRef.play();
+  changeStep = (increment) => {
+    this.setState({ step: this.state.step + increment });
   }
 
   render() {
-    return (
-      <>
-        <Title>Goodmorning Jay</Title>
-        <Subtitle green>Welcome to your Greenwheels for today</Subtitle>
-        <ButtonContainer>
-          <Button>LOOKS GOOD</Button>
-          <Button>LOOKS JAAA</Button>
-        </ButtonContainer>
-        <Video ref="vidRef">
-          <source src={VideoUrl} type="video/mp4" />
-          Sorry, your browser doesn't support embedded videos.
-        </Video>
-        <button onClick={this.playVideo}>PLAY</button>
-      </>
-    );
+    switch (this.state.step) {
+      case 1:
+        return <Step1 />;
+      case 2:
+        return <Step2 />;
+      case 3:
+        return <Step3 />;
+      default:
+        return <Step1 />;
+    }
   }
-};
+}
 
 export default Entry;
