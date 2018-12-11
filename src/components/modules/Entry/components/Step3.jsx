@@ -4,10 +4,11 @@ import styled from 'styled-components';
 import apiUrl from 'config/api';
 import { talk } from 'services/speach';
 import { addConvo } from 'services/conversation';
-
+import CarView from 'video/car.mp4';
 import Subtitle from 'common/Subtitle';
 import ButtonContainer from 'common/ButtonContainer';
 import Button from 'common/Button';
+import Video from 'common/Video';
 
 const Image = styled.img`
   height: 200px;
@@ -44,7 +45,12 @@ class Step3 extends React.Component {
             Yes
           </Button>
         </ButtonContainer>
-        <Image src={apiUrl + '/latest/'} alt="image" />
+        {/* <Image src={apiUrl + '/latest/'} alt="image" /> */}
+        <Video
+          src={CarView}
+          autoplay="autoplay"
+          fullscreen={true}
+        />
       </>
     );
   }

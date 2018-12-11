@@ -9,8 +9,8 @@ const App = () => (
   <main>
     <GlobalStyle />
     <Switch>
-      <Route exact path="/" component={Dashboard} />
-      <Route path="/camera" component={Camera} />
+      <Route exact path="/camera" component={Camera} />
+      <Route path="/" component={Dashboard} />
     </Switch>
   </main>
 );
