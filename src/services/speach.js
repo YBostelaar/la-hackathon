@@ -3,7 +3,6 @@ import { setVoice } from 'ducks/voice';
 
 export const talk = (msg, callback, seconds = 5000) => {
   store.dispatch(setVoice(true));
-  console.log(1, msg);
   const synth = window.speechSynthesis;
 
   if (synth.speaking) {
@@ -18,6 +17,7 @@ export const talk = (msg, callback, seconds = 5000) => {
       const timeoutFunc = () => callback();
 
       setTimeout(() => {
+        console.log('TALK DONE. YOU CAN SPEAK');
         store.dispatch(setVoice(false));
         timeoutFunc();
         clearTimeout(timeoutFunc);
