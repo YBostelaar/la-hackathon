@@ -4,14 +4,15 @@ import Step1 from './components/Step1';
 import Step2 from './components/Step2';
 import Step3 from './components/Step3';
 import Step4 from './components/Step4';
+import Step5 from './components/Step5';
 
 class Entry extends React.Component {
   state = {
     step: 1,
   }
 
-  changeStep = (increment) => {
-    this.setState({ step: this.state.step + increment });
+  changeStep = (step) => {
+    this.setState({ step });
   }
 
   render() {
@@ -24,6 +25,8 @@ class Entry extends React.Component {
         return <Step3 changeStep={this.changeStep} />;
       case 4:
         return <Step4 changeStep={this.changeStep} />;
+      case 5:
+        return <Step5 changeStep={this.changeStep} />;
       default:
         return <Step1 changeStep={this.changeStep} />;
     }
