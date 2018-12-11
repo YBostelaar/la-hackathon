@@ -23,17 +23,16 @@ const Container = styled.div`
 class Step3 extends React.Component {
   componentDidMount() {
     talk('Does the car look like in the picture?', () => {
-      console.log('PRAAT');
       addConvo(':feedback', (feedback) => {
         if (feedback === 'yes') {
           talk('That"s great! Let"s start your ride!', () => {
             this.props.changeStep(5);
-          });
+          }, 4000);
         } else {
           this.props.changeStep(4);
         }
       });
-    });
+    }, 3000);
   }
 
   render() {

@@ -7,11 +7,9 @@ import Subtitle from 'common/Subtitle';
 
 class Step1 extends React.Component {
   componentDidMount() {
-    setTimeout(() => {
-      talk('Good afternoon Jay. Welcome back to your Greenwheels!', () => {
-        this.props.changeStep(2);
-      });
-    }, 1000);
+    talk('Good afternoon Jay. Welcome back to your Greenwheels!', () => {
+      this.props.changeStep(2);
+    }, 6000);
   }
 
   render() {
