@@ -1,6 +1,8 @@
 import React from 'react';
+import PT from 'prop-types';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Video from 'common/Video';
 
@@ -32,7 +34,7 @@ const State = styled.div`
   margin: auto 0;
 `;
 
-const Dashboard = () => (
+const Dashboard = ({ speaking }) => (
   <Container>
     <Content>
       <Header />
@@ -45,9 +47,15 @@ const Dashboard = () => (
           <Route path="/photo" component={Photo} exact />
         </Switch>
       </State>
-      <Video />
+      <Video playing={speaking} />
     </Content>
   </Container>
 );
 
-export default Dashboard;
+Dashboard.propTypes = {
+  speaking: PT.bool,
+};
+
+export default connect((state) => ({
+  speaking: state.voice.speaking,
+}))(Dashboard);

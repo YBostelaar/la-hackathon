@@ -1,4 +1,8 @@
+import store from 'app/store';
+import { setVoice } from 'ducks/voice';
+
 export const talk = (msg, callback) => {
+  store.dispatch(setVoice(true));
   window.speechSynthesis.cancel();
 
   const message = new SpeechSynthesisUtterance();
@@ -10,6 +14,13 @@ export const talk = (msg, callback) => {
   window.messages = [];
   window.messages.push(message);
 
-  message.addEventListener('end', () => { if (callback) callback(); });
+  const endCallback = () => {
+    if (callback) callback();
+    store.dispatch(setVoice(false));
+    message.removeEventListener('end', endCallback);
+  };
+
+  message.addEventListener('end', endCallback);
+
   window.speechSynthesis.speak(message);
 };
