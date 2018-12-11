@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 
-const Video = styled.video`
-
+export default styled.video`
   ${(props) => props.fullscreen && css`
     position: absolute !important;
     top: 0;
@@ -17,5 +16,3 @@ const Video = styled.video`
     object-fit: cover;
   `}
 `;
-
-export default Video;

@@ -1,7 +1,10 @@
 import React from 'react';
+import PT from 'prop-types';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
 import Video from 'common/Video';
 
@@ -59,11 +62,21 @@ class Dashboard extends React.Component {
               <Route path="/locking" component={Locking} exact />
             </Switch>
           </State>
-          <Video />
+          <Video playing={this.props.speaking} />
         </Content>
       </Container>
     );
   }
 }
 
-export default withRouter(Dashboard);
+Dashboard.propTypes = {
+  speaking: PT.bool,
+  history: PT.object,
+};
+
+export default compose(
+  withRouter,
+  connect((state) => ({
+    speaking: state.voice.speaking,
+  }))
+)(Dashboard);
