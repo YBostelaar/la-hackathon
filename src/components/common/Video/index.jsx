@@ -15,6 +15,7 @@ class Video extends React.PureComponent {
         <StyledVideo
           ref="vidRef"
           autoplay={this.props.autoplay}
+          fullscreen={this.props.fullscreen}
         >
           <source src={this.props.src ? this.props.src : VideoUrl} type="video/mp4" />
           Sorry, your browser doesn't support embedded videos.
@@ -26,12 +27,14 @@ class Video extends React.PureComponent {
 
 Video.propTypes = {
   src: PT.string,
-  autoplay: PT.bool,
+  autoplay: PT.oneOf([false, 'autoplay']),
+  fullscreen: PT.bool,
 };
 
 Video.defaultProps = {
   src: false,
   autoplay: false,
+  fullscreen: false,
 };
 
 export default Video;

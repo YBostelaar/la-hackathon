@@ -2,10 +2,11 @@ import React from 'react';
 
 import { talk } from 'services/speach';
 import { addConvo } from 'services/conversation';
-
+import CarView from 'video/car.mp4';
 import Subtitle from 'common/Subtitle';
 import ButtonContainer from 'common/ButtonContainer';
 import Button from 'common/Button';
+import Video from 'common/Video';
 
 class Step3 extends React.Component {
   componentDidMount() {
@@ -28,6 +29,11 @@ class Step3 extends React.Component {
           <Button>No</Button>
           <Button>Yes</Button>
         </ButtonContainer>
+        <Video
+          src={CarView}
+          autoplay="autoplay"
+          fullscreen={true}
+        />
       </>
     );
   }
