@@ -1,8 +1,7 @@
 import React from 'react';
 import PT from 'prop-types';
 import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
-import { withRouter } from 'react-router';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
@@ -10,7 +9,6 @@ import Video from 'common/Video';
 
 import Entry from 'modules/Entry';
 import Driving from 'modules/Driving';
-import Locking from 'modules/Locking';
 import Parking from 'modules/Parking';
 
 import Header from './components/Header';
@@ -41,14 +39,6 @@ const State = styled.div`
 `;
 
 class Dashboard extends React.Component {
-  componentDidMount() {
-    document.addEventListener('keypress', (e) => {
-      if (e.keyCode === 32) {
-        this.props.history.push('/driving');
-      }
-    });
-  }
-
   render() {
     return (
       <Container>
@@ -59,7 +49,6 @@ class Dashboard extends React.Component {
               <Route path="/" component={Entry} exact />
               <Route path="/driving" component={Driving} exact />
               <Route path="/parking" component={Parking} exact />
-              <Route path="/locking" component={Locking} exact />
             </Switch>
           </State>
           <Video playing={this.props.speaking} />
@@ -71,7 +60,6 @@ class Dashboard extends React.Component {
 
 Dashboard.propTypes = {
   speaking: PT.bool,
-  history: PT.object,
 };
 
 export default compose(
