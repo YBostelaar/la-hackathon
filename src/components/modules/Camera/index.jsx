@@ -17,9 +17,17 @@ class Camera extends React.Component {
     this.init();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(prevProps, prevState) {
     if (this.state.src !== prevState.src) {
       this.photo.setAttribute('src', this.state.src);
+
+      const form = new FormData();
+      form.append('image', this.state.src.replace('data:image/png;base64,', ''));
+
+      fetch('http://10.10.6.5:8000/compare', {
+        method: 'POST',
+        body: form,
+      });
     }
   }
 
