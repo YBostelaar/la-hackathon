@@ -1,20 +1,18 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import GlobalStyle from 'styles';
 
-const Camera = lazy(() => import('modules/Camera'));
+import Dashboard from 'modules/Dashboard';
+import Camera from 'modules/Camera';
 
-const App = () => {
-  return (
-    <main>
-      <GlobalStyle />
-      <Suspense fallback={<span>loading</span>}>
-        <Switch>
-          <Route path="/camera" component={Camera} exact />
-        </Switch>
-      </Suspense>
-    </main>
-  );
-};
+const App = () => (
+  <main>
+    <GlobalStyle />
+    <Switch>
+      <Route path="/" component={Dashboard} />
+      <Route path="/camera" component={Camera} />
+    </Switch>
+  </main>
+);
 
 export default withRouter(App);
