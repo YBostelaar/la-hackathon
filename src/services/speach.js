@@ -1,20 +1,9 @@
-// export const talk = (msg, callback) => {
-//   window.speechSynthesis.cancel();
+import store from 'app/store';
+import { setVoice } from 'ducks/voice';
 
-//   const message = new SpeechSynthesisUtterance();
-//   message.voice = window.speechSynthesis.getVoices().find((voice) => voice.name === 'Daniel');
-//   message.text = msg;
-//   message.rate = 1;
-//   message.pitch = 0.5;
-
-//   window.messages = [];
-//   window.messages.push(message);
-
-//   message.addEventListener('end', () => { if (callback) callback(); });
-//   window.speechSynthesis.speak(message);
-// };
-
-export const talk = (msg, callback) => {
+export const talk = (msg, callback, seconds = 5000) => {
+  store.dispatch(setVoice(true));
+  console.log(1, msg);
   const synth = window.speechSynthesis;
 
   if (synth.speaking) {
@@ -24,15 +13,19 @@ export const talk = (msg, callback) => {
 
   if (msg !== '') {
     var utterThis = new SpeechSynthesisUtterance(msg);
-    console.log('hoi');
-    utterThis.onend = function (event) {
-      console.log('ended', event);
-      callback();
-    };
+
+    if (callback) {
+      const timeoutFunc = () => callback();
+
+      setTimeout(() => {
+        store.dispatch(setVoice(false));
+        timeoutFunc();
+        clearTimeout(timeoutFunc);
+      }, seconds);
+    }
 
     utterThis.onerror = function (event) {
-      console.log('error');
-      console.error('SpeechSynthesisUtterance.onerror');
+      console.error('SpeechSynthesisUtterance.onerror', event);
     };
 
     utterThis.voice = window.speechSynthesis.getVoices().find((voice) => voice.name === 'Daniel');

@@ -1,14 +1,15 @@
 import React from 'react';
+import PT from 'prop-types';
 import styled from 'styled-components';
 import { Switch, Route, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
 import Video from 'common/Video';
 
 import Entry from 'modules/Entry';
 import Driving from 'modules/Driving';
-import Locking from 'modules/Locking';
 import Parking from 'modules/Parking';
-import Photo from 'modules/Photo';
 
 import Header from './components/Header';
 
@@ -48,14 +49,22 @@ class Dashboard extends React.Component {
               <Route path="/" component={Entry} exact />
               <Route path="/driving" component={Driving} exact />
               <Route path="/parking" component={Parking} exact />
-              <Route path="/photo" component={Photo} exact />
             </Switch>
           </State>
-          <Video />
+          <Video playing={this.props.speaking} />
         </Content>
       </Container>
     );
   }
 }
 
-export default withRouter(Dashboard);
+Dashboard.propTypes = {
+  speaking: PT.bool,
+};
+
+export default compose(
+  withRouter,
+  connect((state) => ({
+    speaking: state.voice.speaking,
+  }))
+)(Dashboard);
