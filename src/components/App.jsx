@@ -1,17 +1,17 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import GlobalStyle from 'styles';
 
-const Prime = lazy(() => import('modules/Prime'));
+import Dashboard from 'modules/Dashboard';
+import Camera from 'modules/Camera';
 
 const App = () => (
   <main>
     <GlobalStyle />
-    <Suspense fallback={<span>loading</span>}>
-      <Switch>
-        <Route path="/" component={Prime} exact />
-      </Switch>
-    </Suspense>
+    <Switch>
+      <Route exact path="/" component={Dashboard} />
+      <Route path="/camera" component={Camera} />
+    </Switch>
   </main>
 );
 
