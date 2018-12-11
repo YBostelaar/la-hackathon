@@ -11,6 +11,8 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 44px 40px 20px 40px;
+  position: relative;
+  z-index: 1;
 `;
 
 const Header = () => (

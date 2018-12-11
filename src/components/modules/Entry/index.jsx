@@ -1,7 +1,4 @@
 import React from 'react';
-import 'aframe';
-import 'aframe-particle-system-component';
-
 
 import ButtonContainer from 'common/ButtonContainer';
 import Button from 'common/Button';
